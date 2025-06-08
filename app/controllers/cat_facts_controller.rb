@@ -1,10 +1,13 @@
 class CatFactsController < ApplicationController
   def index
-    facts = CatFactsService.new.get_page(params[:page])
-    data = facts[:data]
-    @cat_facts = data.map { |element| element[:fact] }
-    puts facts[:current_page]
-    @current_page = facts[:current_page]
-    @last_page = facts[:last_page]
+    begin
+      facts = CatFactsService.new.get_page(params[:page])
+      data = facts[:data]
+      @cat_facts = data.map { |element| element[:fact] }
+      @current_page = facts[:current_page]
+      @last_page = facts[:last_page]
+    rescue BadHttpCallError, RequestedPageDoesNotExist
+      redirect_to cat_facts_index_url
+    end
   end
 end
