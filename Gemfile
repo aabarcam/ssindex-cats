@@ -17,6 +17,9 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Simpler API requests [https://github.com/jnunemaker/httparty]
+gem "httparty", "~> 0.23.1"
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
@@ -60,4 +63,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+
+  # Mock HTTP requests [https://github.com/bblimke/webmock]
+  gem "webmock", "~> 3.25", ">= 3.25.1"
 end

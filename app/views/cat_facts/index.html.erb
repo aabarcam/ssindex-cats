@@ -1,0 +1,25 @@
+<h1>Cat Facts</h1>
+
+<div id="cat_facts">
+  <% @cat_facts.each do |fact| %>
+    <div>
+      <%
+=begin%>
+ <a href="/products/<%= product.id %>"> 
+<%
+=end%>
+        <%= fact %>
+      <%
+=begin%>
+ </a> 
+<%
+=end%>
+    </div>
+  <% end %>
+  <% if @current_page > 1%>
+ <a href="/cat_facts/index?page=<%=@current_page - 1%>">Previous page</a>
+ <%end%>
+  <% if @current_page < @last_page%>
+ <a href="/cat_facts/index?page=<%=@current_page + 1%>">Next page</a>
+ <%end%>
+</div>
