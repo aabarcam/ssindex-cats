@@ -1,0 +1,19 @@
+<h1>Cat Facts</h1>
+
+<div id="cat_facts">
+  <% @cat_facts.each do |fact| %>
+    <div>
+      <%
+=begin%>
+ <a href="/products/<%= product.id %>"> 
+<%
+=end%>
+        <%= fact %>
+      <%
+=begin%>
+ </a> 
+<%
+=end%>
+    </div>
+  <% end %>
+</div>
