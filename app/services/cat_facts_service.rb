@@ -1,4 +1,4 @@
-class CatFacts
+class CatFactsService
   def get_page(page_num)
     path = "facts"
     query = {}
