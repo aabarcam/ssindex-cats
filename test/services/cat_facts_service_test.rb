@@ -25,7 +25,7 @@ class CatFactsServiceTest < ActiveSupport::TestCase
     stub_request(:get, "https://catfact.ninja/" + path).
       to_return(body: { data: [], last_page: 34, current_page: 100 }.to_json, status: 200)
     error = assert_raises(RequestedPageDoesNotExist) do
-      CatFactsService.new.base_request(path)
+      CatFactsService.new.get_page(100)
     end
     assert_equal("Requested page exceeds total pages in API", error.message)
   end
@@ -34,8 +34,7 @@ class CatFactsServiceTest < ActiveSupport::TestCase
     path = "facts?page=0"
     stub_request(:get, "https://catfact.ninja/" + path).
       to_return(body: { data: [], last_page: 34, current_page: 1 }.to_json, status: 200)
-    response = CatFactsService.new.base_request(path)
-    content = JSON.parse response.body
-    assert_equal(1, content["current_page"])
+    response = CatFactsService.new.get_page(0)
+    assert_equal(1, response[:current_page])
   end
 end
