@@ -19,6 +19,8 @@ gem "jbuilder"
 
 # Simpler API requests [https://github.com/jnunemaker/httparty]
 gem "httparty", "~> 0.23.1"
+# Mock HTTP requests [https://github.com/bblimke/webmock]
+gem "webmock", "~> 3.25", ">= 3.25.1"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
