@@ -5,6 +5,6 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
 
   def likes?(fact_id)
-    Current.user.user_likes_cat_facts.exists?(fact_id: fact_id)
+    self.user_likes_cat_facts.exists?(fact_id: fact_id)
   end
 end

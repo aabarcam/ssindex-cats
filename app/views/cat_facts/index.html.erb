@@ -7,7 +7,7 @@
   <% @fact_id = (@current_page-1)*10 + @cnt%>
     <div>
         <%= fact %>
-        <%if !User.new.likes?(@fact_id) %>
+        <%if !Current.session.user.likes?(@fact_id) %>
         <%= button_to "Like", create_likes_path, method: :post, params: {fact_id: @fact_id} %>
         <%else%>
         <%= button_to "Remove like", destroy_likes_path, method: :delete, params: {fact_id: @fact_id} %>
