@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resource :user, only: [ :new, :create ]
   # resources :passwords, param: :token
   get "cat_facts/index"
+  get "likes/index", to: "likes#index", as: :index_likes
+  post "likes/create", to: "likes#create", as: :create_likes
+  delete "likes/destroy", to: "likes#destroy", as: :destroy_likes
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -1,0 +1,21 @@
+<h1>Liked Facts</h1>
+
+<div id="liked_facts">
+<%if @likes%>
+  <% @likes.each do |like| %>
+    <div>
+      <%
+=begin%>
+ <a href="/products/<%= product.id %>"> 
+<%
+=end%>
+        <%= like %>
+      <%
+=begin%>
+ </a> 
+<%
+=end%>
+    </div>
+  <% end %>
+  <% end %>
+</div>
