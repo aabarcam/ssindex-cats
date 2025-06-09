@@ -7,6 +7,10 @@ class LikesController < ApplicationController
   end
 
   def index
+    user = Current.user
+    liked_facts = user.user_likes_cat_facts.all
+    liked_ids = liked_facts.map { |fact| fact.fact_id }
+    @likes = CatFactsService.new.get_facts liked_ids
   end
 
   def destroy
