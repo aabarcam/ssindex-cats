@@ -59,6 +59,14 @@ Se comenzó el desarrollo teniendo en cuenta el plazo límite de entrega, con lo
 
 Se escoje Ruby on Rails como el framework MVC a utilizar durante el desarrollo, y para alcanzar el PMV, se hará uso de las views de Rails para renderizar en el navegador.
 
+## Service objects
+
+## Relación usuario y cat fact
+
+Dado que no se quiere copiar toda la API de CatFacts en la base de datos del proyecto, se necesita una manera de relacionar un usuario con los CatFacts que le gustan. Se añade una tabla ```user_likes_cat_fact```, que actúa como relación de asociación entre la tabla de usuarios y los CatFacts, como si estos fueran parte de otra tabla de la base de datos del proyecto. Esta tabla ```user_likes_cat_fact``` utiliza el ID del usuario como una llave foránea, y una ID asignada a cada CatFact según la página en que se encuentra y su posición en ella. De esta manera, si alguna vez cambiara el formato de paginación de la API de CatFacts, los 'me gusta' de los usuarios debiesen seguir siendo los correctos.
+
+Dado que CatFacts entrega el listado en varias páginas, para enseñar los CatFacts más populares, se decide enseñar los 10 con más me gusta y se busca en que página está cada uno según su ID. De esta manera se hacen a lo más 10 llamadas a la API externa, en lugar de 34 (páginas actualmente) para obtener la totalidad de los CatFacts.
+
 # Conexión API Cat Facts
 
 Para simplificar un poco las llamadas a API externas se añade la Gem httparty. Se tomaron en cuenta otras alternativas como Faraday que ofrece mayor flexibilidad, pero dado el alcance del proyecto, se consideró que sería sobreingeniería de la solución.
