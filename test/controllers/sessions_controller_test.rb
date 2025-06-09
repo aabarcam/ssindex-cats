@@ -2,7 +2,7 @@ require "test_helper"
 
 WebMock.allow_net_connect!
 
-class UsersControllerTest < ActionDispatch::IntegrationTest
+class SessionsControllerTest < ActionDispatch::IntegrationTest
   test "should get new for unauthenticated" do
     get new_session_path
     assert_response :success
