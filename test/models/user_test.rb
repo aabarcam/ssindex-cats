@@ -1,18 +1,18 @@
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
-  test "invalid user without username" do
+  test "user without username should be invalid" do
     user = User.new()
     assert_not user.valid?
   end
 
-  test "valid user" do
+  test "should be valid user" do
     count = User.count.to_s
     user = User.new(username: "johndoe" + count)
     assert user.valid?
   end
 
-  test "invalid repeated user" do
+  test "repeated user should be invalid" do
     count = User.count.to_s
     user1 = User.new(username: "johndoe" + count)
     user1.save
