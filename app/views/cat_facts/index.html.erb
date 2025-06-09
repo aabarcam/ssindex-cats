@@ -4,7 +4,7 @@
   <% @cnt = 0 %>
   <% @cat_facts.each do |fact| %>
   <% @cnt = @cnt + 1 %>
-  <% @fact_id = (@current_page-1)*10 + @cnt%>
+  <% @fact_id = (@current_page-1)*@page_size + @cnt%>
     <div>
         <%= fact %>
         <%if !Current.session.user.likes?(@fact_id) %>
