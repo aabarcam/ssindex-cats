@@ -19,4 +19,17 @@ class UserTest < ActiveSupport::TestCase
     user2 = User.new(username: "johndoe" + count)
     assert_not user2.valid?
   end
+
+  test "likes? should be true on liked fact" do
+    user = users[0]
+    fact_id = 1
+    user.user_likes_cat_facts.create(fact_id: fact_id)
+    assert user.likes?(fact_id)
+  end
+
+  test "likes? should be false on non liked fact" do
+    user = users[0]
+    fact_id = 1
+    assert_not user.likes?(fact_id)
+  end
 end
