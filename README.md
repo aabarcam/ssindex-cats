@@ -10,8 +10,9 @@
 En el directorio base del proyecto ejecutar en una consola:
 
 ```bundle install```
+```bin/rails db:migrate```
 
-para instalar todas las dependencias del proyecto.
+para instalar todas las dependencias del proyecto y ejecutar las migraciones de la base de datos.
 
 ## Servidor de desarrollo
 
