@@ -24,8 +24,12 @@
 
   <body>
     <nav>
-      <%= link_to "Home", root_path %>
+      <%= link_to "SSCatFacts", root_path %>
+      <%= link_to "My likes", index_likes_path if authenticated? %>
+      <%= link_to "Popular facts", popular_facts_path if authenticated? %>
       <%= button_to "Log out", session_path, method: :delete if authenticated? %>
+      <%= button_to "Login", new_session_path, method: :get if !authenticated? %>
+      <%= button_to "Register", new_user_path, method: :get if !authenticated? %>
     </nav>
     <main>
     <%= yield %>
