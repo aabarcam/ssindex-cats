@@ -1,0 +1,19 @@
+<h1>10 most popular facts</h1>
+
+<div id="popular_facts">
+<%if @popular_facts%>
+  <% @popular_facts.each do |fact| %>
+    <div>
+        <%= fact[:fact] %>
+        <br>
+        (<%= fact[:likes] %> likes)
+        <%if !Current.session.user.likes?(fact[:id]) %>
+        <%= button_to "Like", create_likes_path, method: :post, params: {fact_id: fact[:id]} %>
+        <%else%>
+        <%= button_to "Remove like", destroy_likes_path, method: :delete, params: {fact_id: fact[:id]} %>
+        <%end%>
+        <br>
+    </div>
+  <% end %>
+  <% end %>
+</div>
