@@ -1,0 +1,24 @@
+<h1>Cat facts</h1>
+
+<div id="cat_facts">
+  <% @cnt = 0 %>
+  <% @cat_facts.each do |fact| %>
+  <% @cnt = @cnt + 1 %>
+  <% @fact_id = (@current_page-1)*@page_size + @cnt%>
+    <div>
+        <%= fact %>
+        <%if !Current.session.user.likes?(@fact_id) %>
+        <%= button_to "Like", create_likes_path, method: :post, params: {fact_id: @fact_id} %>
+        <%else%>
+        <%= button_to "Remove like", destroy_likes_path, method: :delete, params: {fact_id: @fact_id} %>
+        <%end%>
+        <br>
+    </div>
+  <% end %>
+  <% if @current_page > 1%>
+ <a href="/cat_facts/index?page=<%=@current_page - 1%>">Previous page</a>
+ <%end%>
+  <% if @current_page < @last_page%>
+ <a href="/cat_facts/index?page=<%=@current_page + 1%>">Next page</a>
+ <%end%>
+</div>

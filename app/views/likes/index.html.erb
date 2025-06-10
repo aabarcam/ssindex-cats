@@ -1,0 +1,17 @@
+<h1>My liked facts</h1>
+
+<div id="liked_facts">
+<%if @likes%>
+  <% @likes.each do |like| %>
+    <div>
+        <%= like[:fact] %>
+        <%if !Current.session.user.likes?(like[:id]) %>
+        <%= button_to "Like", create_likes_path, method: :post, params: {fact_id: like[:id]} %>
+        <%else%>
+        <%= button_to "Remove like", destroy_likes_path, method: :delete, params: {fact_id: like[:id]} %>
+        <%end%>
+        <br>
+    </div>
+  <% end %>
+  <% end %>
+</div>
