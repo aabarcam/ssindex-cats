@@ -4,7 +4,8 @@ services:
       context: .
       dockerfile: dev.dockerfile
     volumes:
-      - .:/usr/src/app
+      - type: bind
+        source: ./app
+        target: /rails/app
     ports:
       - "3000:3000"
-    
