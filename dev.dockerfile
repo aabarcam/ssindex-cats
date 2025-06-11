@@ -10,6 +10,7 @@ WORKDIR /rails
 
 # Install base packages
 RUN apt-get update -qq && \
+    apt-get install dos2unix -qq && \
     apt-get install --no-install-recommends -y curl libjemalloc2 libvips sqlite3 && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
@@ -31,6 +32,8 @@ COPY . .
 
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
+
+RUN find . |xargs dos2unix
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-dev-entrypoint"]
