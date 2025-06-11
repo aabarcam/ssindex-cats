@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+
+if [ "$RAILS_ENV" = "development" ]; then
+  echo "Preparing database"
+  ./bin/rails db:prepare
+fi
+
+exec "${@}"
