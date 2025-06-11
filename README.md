@@ -1,33 +1,71 @@
-# Requisitos del sistema
+# Instrucciones de ejecución
+
+## Docker
+
+### Ambiente de desarrollo
+
+Para construir el proyecto con docker es necesario tener instalado [Docker Compose](https://docs.docker.com/compose/install/), y basta con ejecutar el comando:
+
+```
+docker compose up
+```
+
+Esto construye la imagen de Docker de ser necesario, y levanta el contenedor con el proyecto en marcha. Finalmente, se debiese poder acceder a la aplicación web localmente en el puerto 3000. (http://localhost:3000)
+
+### Tests
+
+Para ejecutar los tests existentes, basta con abrir una consola en el contenedor en ejecución, por ejemplo con el comando:
+
+```
+docker exec -ti <nombre-contenedor> /bin/bash
+```
+
+Y en esta ejecutar el comando:
+
+```
+bin/rails test
+```
+
+## Docker Dev Container
+
+Se añaden tambien archivos .devcontainer que permiten utilizar Visual Studio Code para desarrollar el proyecto dentro del contenedor en ejecución con las siguientes [instrucciones](https://code.visualstudio.com/docs/devcontainers/containers).
+
+## Sin Docker
+
+### Requisitos
 
 * Ruby v3.4.4
 * Ruby on rails v8.0.2
 
-# Instrucciones
-
-## Preparación
+### Instrucciones
 
 En el directorio base del proyecto ejecutar en una consola:
 
-```bundle install```
+```
+bundle install
 
-```bin/rails db:migrate```
+bin/rails db:migrate
+```
 
-para instalar todas las dependencias del proyecto y ejecutar las migraciones de la base de datos.
+Esto instala todas las dependencias del proyecto y ejecuta las migraciones de la base de datos.
 
-## Servidor de desarrollo
+### Ambiente de desarrollo
 
 Para levantar el ambiente de desarrollo, en el directorio base del proyecto ejecutar en una consola:
 
-```bin/rails server```
+```
+bin/rails server
+```
 
-El servidor entonces escuchará al puerto 3000 y es accesible desde ```localhost:3000```.
+El servidor entonces queda disponible localmente en el puerto 3000 y es accesible desde http://localhost:3000.
 
-## Tests
+### Tests
 
 Para ejecutar los tests existentes, en el directorio base del proyecto ejecutar en una consola:
 
-```bin/rails test test```
+```
+bin/rails test
+```
 
 # Desiciones de diseño
 
