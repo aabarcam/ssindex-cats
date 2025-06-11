@@ -18,11 +18,16 @@ class CatFactsService
     ids.each do |page_num, page_ids|
       page = get_page page_num
       data = page[:data]
-      data = data.map { |el| { fact: el[:fact], id: data.index(el) + (page_num - 1) * page_size + 1 } }
+      data = attach_id_to_fact(data, page_num, page_size)
       filtered_data = data.filter { |fact| fact[:id].in? page_ids }
       facts = facts + filtered_data
     end
     facts
+  end
+
+  # attach id to fact correponding to index in current page
+  def attach_id_to_fact(fact_array, page, page_size)
+    fact_array.map { |el| { fact: el[:fact], id: fact_array.index(el) + (page - 1) * page_size + 1 } }
   end
 
   # compute pages the ids belong to
