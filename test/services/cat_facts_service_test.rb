@@ -124,4 +124,26 @@ class CatFactsServiceTest < ActiveSupport::TestCase
     end
     assert_equal("Non positive integer id found", error.message)
   end
+
+  test "correct ids should be attached" do
+    data = [ { fact: "fact1" },
+              { fact: "fact2" },
+              { fact: "fact3" } ]
+    page_size = 3
+    page = 2
+    result = CatFactsService.new.attach_id_to_fact(data, page, page_size)
+    expected = [ { fact: "fact1", id: 4 },
+                  { fact: "fact2", id: 5 },
+                  { fact: "fact3", id: 6 } ]
+    assert_equal(expected, result)
+  end
+
+  test "attach id should not error on empty" do
+    page_size = 2
+    page = 2
+    assert_nothing_raised do
+      result = CatFactsService.new.attach_id_to_fact({}, page, page_size)
+      assert_empty result
+    end
+  end
 end
