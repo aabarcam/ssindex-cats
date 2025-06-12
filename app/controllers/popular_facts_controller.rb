@@ -8,5 +8,6 @@ class PopularFactsController < ApplicationController
     facts = CatFactsService.new.get_facts popular_fact_ids
     facts.each { |fact| fact[:likes] = popular_fact_count[fact[:id]] }
     @popular_facts = facts.sort { |a, b| b[:likes] <=> a[:likes] }
+    render json: { data: { facts: @popular_facts } }, status: :ok
   end
 end

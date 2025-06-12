@@ -9,7 +9,7 @@ class CatFactsController < ApplicationController
                     current_page: data[:current_page],
                     last_page: data[:last_page] }
       @cat_facts = fact_hash
-      render json: { data: @cat_facts }, status: :ok
+      render json: { data: { facts: @cat_facts } }, status: :ok
     rescue RequestedPageDoesNotExist
       render json: { message: "Requested page does not exist" }, status: :not_found
     rescue BadHttpCallError
