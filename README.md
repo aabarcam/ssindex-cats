@@ -1,3 +1,5 @@
+# ESTE README CORRESPONDE A LA VERSIÓN 1 DEL PROYECTO Y ESTA DESACTUALIZADO, REFERIRSE A LA ÚLTIMA VERSIÓN DEL [PROYECTO](https://github.com/aabarcam/ss-cat-facts) COMPLETO
+
 # Instrucciones de ejecución
 
 ## Docker
