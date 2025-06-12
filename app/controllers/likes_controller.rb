@@ -1,4 +1,6 @@
 class LikesController < ApplicationController
+  protect_from_forgery with: :null_session
+
   def create
     fact_id = params[:fact_id]
     @user.user_likes_cat_facts.create(fact_id: fact_id)
@@ -9,7 +11,7 @@ class LikesController < ApplicationController
     liked_facts = @user.user_likes_cat_facts.all
     liked_ids = liked_facts.map { |fact| fact.fact_id }
     @likes = CatFactsService.new.get_facts liked_ids
-    render json: { data: { likes: @likes } }, status: :ok
+    render json: { likes: @likes }, status: :ok
   end
 
   def destroy

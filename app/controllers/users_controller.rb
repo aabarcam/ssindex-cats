@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def me
-    render json: current_user, status: :ok
+    render json: { user: @user }, status: :ok
   end
 
   def create
