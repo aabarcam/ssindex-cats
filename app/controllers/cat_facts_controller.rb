@@ -9,8 +9,11 @@ class CatFactsController < ApplicationController
                     current_page: data[:current_page],
                     last_page: data[:last_page] }
       @cat_facts = fact_hash
-    rescue BadHttpCallError, RequestedPageDoesNotExist
-      redirect_to cat_facts_index_url
+      render json: { data: @cat_facts }, status: :ok
+    rescue RequestedPageDoesNotExist
+      render json: { message: "Requested page does not exist" }, status: :not_found
+    rescue BadHttpCallError
+      render json: { message: "Service unreachable" }, status: :service_unavailable
     end
   end
 end
