@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post "likes/create", to: "likes#create", as: :create_likes
   delete "likes/destroy", to: "likes#destroy", as: :destroy_likes
   get "popular/index", to: "popular_facts#index", as: :popular_facts
+  get "/me", to: "users#me"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

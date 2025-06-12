@@ -19,6 +19,10 @@ gem "jbuilder"
 
 # Simpler API requests [https://github.com/jnunemaker/httparty]
 gem "httparty", "~> 0.23.1"
+# Support for Cross-Origin Resource Sharing (CORS) for Rack compatible web applications. [https://github.com/cyu/rack-cors]
+gem "rack-cors"
+# JWT authentication [https://github.com/jwt/ruby-jwt]
+gem "jwt", "~> 2.10", ">= 2.10.1"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"

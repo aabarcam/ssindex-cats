@@ -1,27 +1,27 @@
 class LikesController < ApplicationController
+  protect_from_forgery with: :null_session
+
   def create
     fact_id = params[:fact_id]
-    user = Current.user
-    user.user_likes_cat_facts.create(fact_id: fact_id)
-    redirect_back_or_to root_url
+    @user.user_likes_cat_facts.create(fact_id: fact_id)
+    render json: { data: { fact_id: fact_id } }, status: :ok
   end
 
   def index
-    user = Current.user
-    liked_facts = user.user_likes_cat_facts.all
+    liked_facts = @user.user_likes_cat_facts.all
     liked_ids = liked_facts.map { |fact| fact.fact_id }
     @likes = CatFactsService.new.get_facts liked_ids
+    render json: { likes: @likes }, status: :ok
   end
 
   def destroy
     fact_id = params[:fact_id]
-    user = Current.user
-    fact = user.user_likes_cat_facts.find_by(fact_id: fact_id)
+    fact = @user.user_likes_cat_facts.find_by(fact_id: fact_id)
     if fact != nil
       fact.destroy
-      redirect_back_or_to root_url
+      render json: { data: { fact_id: fact_id } }, status: :ok
     else
-      render file: "#{Rails.root}/public/400.html", layout: false, status: :not_found
+      render json: { message: "Invalid fact ID" }, status: :not_found
     end
   end
 end
